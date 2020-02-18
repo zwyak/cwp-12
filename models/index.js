@@ -14,16 +14,17 @@ module.exports = (Sequelize, config) => {
 
   sequelize.sync({force:true}).then(()=> {
     console.log("Tables have been created");
+
+    pizzas.create({
+      name: "Toskana",
+      description: "Twice cheese",
+      calories: 350
+    }).then(res=>{
+      console.log(res);
+    }).catch(err=>console.log(err));
+    
   })
   .catch(err => console.log(err));
-
-  pizzas.create({
-    name: "Toskana",
-    description: "Twice cheese",
-    calories: 350
-  }).then(res=>{
-    console.log(res);
-  }).catch(err=>console.log(err));
 
   return {
     turtles,
