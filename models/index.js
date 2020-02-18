@@ -10,21 +10,12 @@ module.exports = (Sequelize, config) => {
   const pizzas = Pizza(Sequelize, sequelize);
 
   turtles.hasOne(weapons);
-  turtles.hasMany(pizzas);
+  turtles.hasOne(pizzas);
 
-  sequelize.sync({force:true}).then(()=> {
-    console.log("Tables have been created");
-
-    pizzas.create({
-      name: "Toskana",
-      description: "Twice cheese",
-      calories: 350
-    }).then(res=>{
-      console.log(res);
-    }).catch(err=>console.log(err));
-    
+  sequelize.sync({force: true}).then(result=>{
+    console.log(result);
   })
-  .catch(err => console.log(err));
+  .catch(err=> console.log(err));
 
   return {
     turtles,
