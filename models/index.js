@@ -4,6 +4,8 @@ const Pizza = require('./pizza');
 
 module.exports = (Sequelize, config) => {
   // TODO: создание объекта для подключения к базе - sequelize
+  const Sequelize = require('sequelize');
+  const sequelize = new Sequelize('sqlite::memory:');
 
   const turtles = Turtle(Sequelize, sequelize);
   const weapons = Weapon(Sequelize, sequelize);
