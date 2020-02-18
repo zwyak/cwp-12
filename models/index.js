@@ -3,15 +3,27 @@ const Weapon = require('./weapon');
 const Pizza = require('./pizza');
 
 module.exports = (Sequelize, config) => {
-  // TODO: создание объекта для подключения к базе - sequelize
-  const Sequelize = require('sequelize');
-  const sequelize = new Sequelize('sqlite::memory:');
+  const sequelize = new Sequelize(config.database);
 
   const turtles = Turtle(Sequelize, sequelize);
   const weapons = Weapon(Sequelize, sequelize);
   const pizzas = Pizza(Sequelize, sequelize);
 
-  // TODO: создание связей между таблицами
+  turtles.hasOne(weapons);
+  turtles.hasMany(pizzas);
+
+  sequelize.sync({force:true}).then(()=> {
+    console.log("Tables have been created");
+  })
+  .catch(err => console.log(err));
+
+  pizzas.create({
+    name: "Toskana",
+    description: "Twice cheese",
+    calories: 350
+  }).then(res=>{
+    console.log(res);
+  }).catch(err=>console.log(err));
 
   return {
     turtles,

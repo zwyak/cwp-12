@@ -4,4 +4,6 @@ const config = require('./config.json');
 
 const db = require('./models')(Sequelize, config);
 
-// TODO: запросы к БД
+db.pizzas.findAll({raw:true}).then(turtles=>{
+  console.log(turtles);
+}).catch(err=>console.log(err));
