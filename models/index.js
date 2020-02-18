@@ -9,14 +9,6 @@ module.exports = (Sequelize, config) => {
   const weapons = Weapon(Sequelize, sequelize);
   const pizzas = Pizza(Sequelize, sequelize);
 
-  turtles.hasOne(weapons);
-  turtles.hasOne(pizzas);
-
-  sequelize.sync({force: true}).then(result=>{
-    console.log(result);
-  })
-  .catch(err=> console.log(err));
-
   return {
     turtles,
     weapons,
