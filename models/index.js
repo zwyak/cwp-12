@@ -13,7 +13,7 @@ module.exports = (Sequelize, config) => {
   .then(() => pizzas.create({
     name: 'Peperony and Peppers',
     description: 'Pizza sauce, pepperony, peppers, cheese, ',
-    calories: 560
+    calories: 700
   }))
   .then(() => pizzas.create({
     name: 'Ranch Pizza',
@@ -23,8 +23,20 @@ module.exports = (Sequelize, config) => {
   .then(() => pizzas.create({
     name: 'Chicken BBQ',
     description: 'Pizza sauce, chicken, pork, onion, BBQ sauce, cheese',
-    calories: 560
+    calories: 470
   }))
+  .then(() => weapons.create({
+    name: 'MiniGun',
+    dps: 100
+  }))
+  .then(() => weapons.create({
+    name: 'Knife',
+    dps: 5
+  }))
+  .then(() => weapons.create({
+    name: 'Kalashnikov',
+    dps: 46
+  }));
 
   return {
     turtles,
