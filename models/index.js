@@ -9,6 +9,13 @@ module.exports = (Sequelize, config) => {
   const weapons = Weapon(Sequelize, sequelize);
   const pizzas = Pizza(Sequelize, sequelize);
 
+  turtles.hasOne(weapons);
+  weapons.belongsTo(turtles);
+
+  turtles.hasMany(pizzas);
+  pizzas.belongsTo(turtles, {as: 'firstFavoritePizza'});
+  pizzas.belongsTo(turtles, {as: 'secondFavoritePizza'});
+
   sequelize.sync({force:true})
   .then(() => pizzas.create({
     id: 1,
