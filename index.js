@@ -6,7 +6,7 @@ const db = require('./models')(Sequelize, config)
 
 setTimeout(()=>{
   //All turtles
-  db.pizzas.findAll({raw: true}).then(t => {
+  db.turtles.findAll({raw: true}).then(t => {
     console.log(t);
   })
 
