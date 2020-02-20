@@ -39,7 +39,7 @@ setTimeout(()=>{
 
   //Update pizzas
   db.pizzas.update({
-    description: Sequelize.literal("description + 'SUPER-FAT!'")
+    description: db.sequelize.literal("description || ' Super-Fat!'")
   }, {
   where: {
     calories:{
