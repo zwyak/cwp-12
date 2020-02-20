@@ -6,9 +6,9 @@ const db = require('./models')(Sequelize, config)
 
 setTimeout(()=>{
   //All turtles
-   db.turtles.findAll({raw: true}).then(t => {
-     console.log(t);
-   });
+  db.turtles.findAll({raw: true}).then(t => {
+    console.log(t);
+  });
 
   //All turtles with favorite pizza
   db.sequelize.query(
@@ -52,8 +52,19 @@ setTimeout(()=>{
     });
   });
 
-
-
 //All weapons with dps > 100
+
+  db.weapons.findAll({where:{
+    dps:{
+      [Sequelize.Op.gt]: 50
+    }
+  }, raw: true}).then(w => {
+    console.log(w);
+  });
+
+  //All pizzas with id=1
+  db.pizzas.findAll({where:{id:1},raw: true}).then(p => {
+    console.log(p);
+  });
 
 }, 3000);
